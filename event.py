@@ -1,7 +1,10 @@
 import discord
-intents = discord.Intents.all()
+import os
+from dotenv import load_dotenv
 
-bot = discord.Client(intents = intents)
+load_dotenv()
+
+bot = discord.Client()
 
 @bot.event
 async def on_ready():
@@ -23,5 +26,4 @@ async def on_member_join(member): #server welcoming when somebody invited server
     dmchannel = await member.create_dm()
     await dmchannel.send(f"Welcome to {guildname}!")
 
-bot.run("OTk3NDIyNDQxNTU3MTM1NDAw.Gvc0pK.5-tBsIiJSvGLhX9FdPvilOGsgWfetfMaLG14Ps")
-
+bot.run(os.getenv('DISCORD_TOKEN'))
